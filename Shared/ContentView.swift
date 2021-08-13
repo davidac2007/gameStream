@@ -10,29 +10,66 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Color(red: 19/255, green: 30/255, blue: 53/255, opacity: 1.0)
+            Spacer()
+            Color(red: 19/255, green: 30/255, blue: 53/255, opacity: 1.0).ignoresSafeArea()
+            
             VStack{
-                Image("AppLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250)
+                Image("AppLogo").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 40)
                 SignInSignUpView()
             }
-        }.ignoresSafeArea()
+        }
         
     }
 }
 
 struct SignInSignUpView: View{
+    
+    @State var signIn = true
+    
+    
     var body: some View{
         
         VStack{
             HStack {
-                Text("SIGN IN")
-                Text("SIGN UP")
+                Spacer()
+                Button("SIGN IN"){
+                    signIn = true
+                    print("Sign In View")
+                }.foregroundColor(signIn ? .white : .gray)
+                Spacer()
+                Button("SIGN UP"){
+                    signIn = false
+                    print("Sign Up View")
+                }.foregroundColor(signIn ? .gray : .white)
+                Spacer()
+                
+            }
+            
+             Spacer(minLength: 42)
+            
+            if signIn == true{
+                SignInView()
+            }else{
+                SignUpView()
             }
         }
         
-        
     }
     
+}
+
+
+struct SignInView: View{
+    var body: some View{
+        Text("You're in sign in view").foregroundColor(.white)
+       
+    }
+}
+struct SignUpView: View{
+    var body: some View{
+        Text("You're in sign up view").foregroundColor(.white)
+        
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
