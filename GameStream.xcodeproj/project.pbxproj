@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B3A714C26C9B64600AFD6F1 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3A714B26C9B64600AFD6F1 /* Home.swift */; };
+		5B3A714D26C9B64600AFD6F1 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3A714B26C9B64600AFD6F1 /* Home.swift */; };
 		5B4AB3C526C36DE5001855EA /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AB3C426C36DE5001855EA /* Tests_iOS.swift */; };
 		5B4AB3D026C36DE5001855EA /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AB3CF26C36DE5001855EA /* Tests_macOS.swift */; };
 		5B4AB3D226C36DE5001855EA /* GameStreamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4AB3A926C36DE3001855EA /* GameStreamApp.swift */; };
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B3A714B26C9B64600AFD6F1 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		5B4AB3A926C36DE3001855EA /* GameStreamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStreamApp.swift; sourceTree = "<group>"; };
 		5B4AB3AA26C36DE3001855EA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5B4AB3AB26C36DE5001855EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 				5B4AB3A926C36DE3001855EA /* GameStreamApp.swift */,
 				5B4AB3AA26C36DE3001855EA /* ContentView.swift */,
 				5B4AB3AB26C36DE5001855EA /* Assets.xcassets */,
+				5B3A714B26C9B64600AFD6F1 /* Home.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -309,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4AB3D426C36DE5001855EA /* ContentView.swift in Sources */,
+				5B3A714C26C9B64600AFD6F1 /* Home.swift in Sources */,
 				5B4AB3D226C36DE5001855EA /* GameStreamApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4AB3D526C36DE5001855EA /* ContentView.swift in Sources */,
+				5B3A714D26C9B64600AFD6F1 /* Home.swift in Sources */,
 				5B4AB3D326C36DE5001855EA /* GameStreamApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

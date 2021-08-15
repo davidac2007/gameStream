@@ -9,18 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            Spacer()
-            Color(red: 19/255, green: 30/255, blue: 53/255, opacity: 1.0)
-            .ignoresSafeArea()
-            VStack{
-                Image("AppLogo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 250)
-                    .padding(.bottom, 40)
-                SignInSignUpView()
-            }
+        NavigationView {
+            ZStack {
+                Color(red: 19/255, green: 30/255, blue: 53/255, opacity: 1.0)
+                .ignoresSafeArea()
+                
+                VStack{
+                    Image("AppLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 250)
+                        .padding(.bottom, 40)
+                    SignInSignUpView()
+                }
+            }.navigationBarHidden(true)
         }
     }
 }
@@ -54,17 +56,76 @@ struct SignInSignUpView: View{
 
 
 struct SignInView: View{
+    @State var email = ""
+    @State var password = ""
+    @State var isHomeActive = false
     var body: some View{
         ScrollView {
-            EmailPasswordFields()
+            VStack(alignment: .leading){
+                Text("Email")
+                    .foregroundColor(Color("Dark-Cian"))
+                ZStack(alignment: .leading){
+                    if email.isEmpty{
+                        Text("example@email.com")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    TextField("", text: $email)
+                        .foregroundColor(.white)
+                }
+                Divider()
+                    .frame(height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .background(Color("Dark-Cian"))
+                    .padding(.bottom)
+                Text("Password")
+                    .foregroundColor(Color(.white))
+                ZStack(alignment: .leading){
+                    if password.isEmpty{
+                        Text("Your password")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    SecureField("", text: $password)
+                        .foregroundColor(.white)
+                }
+                Divider()
+                    .frame(height: 1, alignment: .center)
+                    .background(Color("Dark-Cian"))
+                    .padding(.bottom)
+                
+                Text("Forgot password?")
+                    .font(.footnote)
+                    .frame(width: 300, alignment: .trailing)
+                    .foregroundColor(Color("Dark-Cian"))
+                    .padding(.bottom)
+                Button(action: signIn, label: {
+                    Text("SIGN IN")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18))
+                        .overlay(RoundedRectangle(cornerRadius: 6.0)
+                        .stroke(Color("Dark-Cian"),lineWidth: 1.0)
+                        .shadow(color: .white,radius: 6))
+                })
+            }
             SocialAuthButtons(captionTitle: "Sign In With")
         }.padding(.horizontal, 50.0)
+        NavigationLink(
+            destination: Home(),
+            isActive: $isHomeActive,
+            label: {
+                EmptyView()
+            })
+        
+    }
+    func signIn(){
+        print("Signing in")
+        isHomeActive = true
     }
 }
 
-func signIn(){
-    print("Signing in")
-}
+
 
 func signInWithFacebook(){
     print("Signing in with Facebook")
@@ -115,15 +176,16 @@ struct EmailPasswordFields: View{
                 .frame(width: 300, alignment: .trailing)
                 .foregroundColor(Color("Dark-Cian"))
                 .padding(.bottom)
-            SignInUpButton(buttonTitle: "SIGN IN")
+          
         }
     }
+  
 }
 
 struct SignInUpButton: View{
     let buttonTitle: String
     var body: some View{
-        Button(action: signIn, label: {
+        Button(action: {}, label: {
             Text(buttonTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
