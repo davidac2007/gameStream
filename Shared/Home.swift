@@ -52,6 +52,8 @@ struct Home: View {
 }
 
 struct HomeScreen: View{
+    
+    @State var textSearch = ""
     var body: some View{
         
         ZStack {
@@ -59,12 +61,42 @@ struct HomeScreen: View{
             Color("NavyBlue").ignoresSafeArea()
             
             VStack {
-                Text("Hello").foregroundColor(.white)
+                Image("AppLogo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250)
+                    .padding(.horizontal, 11.0)
+                
+                
+                HStack{
+                    Button(action: {
+                        search()
+                    }, label: {
+                        Image(systemName: "magnifyingglass").foregroundColor(textSearch.isEmpty ? Color(.yellow) : Color("Dark-Cian")   )
+                    })
+                    
+                    ZStack(alignment: .leading){
+                        if textSearch.isEmpty{
+                            Text("Search")
+                            .foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                        }
+                        
+                        TextField("", text: $textSearch).foregroundColor(.white)
+                    }
+                    
+                }.padding([.top, .leading, .bottom], 11.0)
+                    .background(Color("Blue-Gray")).clipShape(Capsule())
+                
             }.padding(.horizontal, 18)
             
             
             
-        }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+        }.navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    func search() {
+        print("Searching for the videogame")
     }
 }
 
