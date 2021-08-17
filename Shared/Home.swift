@@ -115,7 +115,7 @@ struct SubModuleHome:View{
         
         VStack {
             Text("Most popular")
-                .font(.title3)
+                .font(.title2)
                 .foregroundColor(.white)
                 .bold()
                 .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity,  alignment: .leading)
@@ -131,7 +131,7 @@ struct SubModuleHome:View{
                     VStack(spacing: 0){
                         
                         Image("The Witcher 3").resizable().aspectRatio(contentMode: .fit)
-                        Text("The Witcher 3").frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity,  alignment: .leading).background(Color("Blue-Gray"))
+                        Text("  The Witcher 3: Wild Hunt").bold().frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity,minHeight: 50,  alignment: .leading).background(Color("Blue-Gray"))
                     }
                     
                 })
@@ -146,13 +146,13 @@ struct SubModuleHome:View{
             .padding(.vertical)
             
             Text("Explore")
-                .font(.title3)
+                .font(.title2)
                 .foregroundColor(.white)
                 .bold()
                 .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity,  alignment: .leading)
             
             ScrollView(.horizontal, showsIndicators: false){
-                HStack{
+                HStack(spacing: 15){
                     
                     Button(action: {}, label: {
                         ZStack{
@@ -180,16 +180,16 @@ struct SubModuleHome:View{
                     })
                 }
                 
-            }
+            }.padding(.bottom)
             
             Text("Recommended for you")
-                .font(.title3)
+                .font(.title2)
                 .foregroundColor(.white)
                 .bold()
                 .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity,  alignment: .leading)
             
             ScrollView(.horizontal, showsIndicators: false){
-                HStack{
+                HStack(spacing: 15){
                     
                     Button(action: {url = urlVideos[1]
                             print("url: \(url)")
@@ -211,7 +211,38 @@ struct SubModuleHome:View{
                  
                 }
                 
-            }
+            }.padding(.bottom)
+            
+            Text("You may also like")
+                .font(.title3)
+                .foregroundColor(.white)
+                .bold()
+                .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity,  alignment: .leading)
+            
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack(spacing: 15){
+                    
+                    Button(action: {url = urlVideos[4]
+                            print("url: \(url)")
+                            isPlayerActive = true}, label: {
+                                Image("Cuphead").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                    
+                    Button(action: {url = urlVideos[5]
+                            print("url: \(url)")
+                            isPlayerActive = true}, label: {
+                                Image("Hades").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                    
+                    Button(action: {url = urlVideos[6]
+                            print("url: \(url)")
+                            isPlayerActive = true}, label: {
+                                Image("Grand Theft Auto V").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                 
+                }
+                
+            }.padding(.bottom)
             
             
             
