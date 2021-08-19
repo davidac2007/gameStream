@@ -12,7 +12,7 @@ struct Games: Codable{
     var games:[Game]
 }
 
-struct Game: Codable{
+struct Game: Codable, Hashable{
     
     var title:String
     var studio:String
@@ -26,7 +26,7 @@ struct Game: Codable{
     
 }
 
-struct VideoUrl:Codable{
+struct VideoUrl:Codable, Hashable{
     var mobile:String
     var tablet:String
 }
