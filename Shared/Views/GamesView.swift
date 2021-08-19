@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct GamesView: View {
     
@@ -71,7 +72,13 @@ struct GamesView: View {
                                 
                             }, label: {
                                 
-                                Text("\(game.title)")
+                                KFImage(URL(string: game.galleryImages[0])!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                                    .padding(.bottom, 12)
+                                
+                                
                             })
                             
                             
