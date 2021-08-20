@@ -29,7 +29,6 @@ struct GamesView: View {
     
     var body: some View {
         
-        
         ZStack{
             Color("NavyBlue").ignoresSafeArea()
             
@@ -59,36 +58,36 @@ struct GamesView: View {
                                 tags = game.tags
                                 imagesUrl = game.galleryImages
                                 
-//                                @State var url:String = ""
-//                                @State var title:String = ""
-//                                @State var studio:String = ""
-//                                @State var contentRating:String = ""
-//                                @State var publicationYear: String = ""
-//                                @State var description: String = ""
-//                                @State var tags:[String] = [""]
-//                                @State var imagesUr:[String] = [""]
-                                
                                 print("Tapped the game: \(title)")
                                 
+                                gameViewIsActive = true
                             }, label: {
-                                
                                 KFImage(URL(string: game.galleryImages[0])!)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .clipShape(RoundedRectangle(cornerRadius: 4))
                                     .padding(.bottom, 12)
-                                
-                                
                             })
-                            
-                            
-                        
-                            
-                    
                     }
                 }
                 
             }.padding(.horizontal, 6)
+                
+                NavigationLink(
+                    destination: GameView(
+                        url: url,
+                        title: title,
+                        studio: studio,
+                        contentRating: contentRating,
+                        publicationYear: publicationYear,
+                        description: description,
+                        tags: tags,
+                        imagesUrl: imagesUrl),
+                    isActive: $gameViewIsActive,
+                    label:
+                        {
+                            EmptyView()
+                        })
             
         }
             .navigationBarHidden(true)

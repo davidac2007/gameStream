@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B2C7AA226D0187700A5F561 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C7AA126D0187700A5F561 /* GameView.swift */; };
+		5B2C7AA326D0187700A5F561 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C7AA126D0187700A5F561 /* GameView.swift */; };
 		5B2D159426CC26D90017D52C /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D159326CC26D90017D52C /* GamesView.swift */; };
 		5B2D159526CC26D90017D52C /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D159326CC26D90017D52C /* GamesView.swift */; };
 		5B2D159A26CC29650017D52C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D159926CC29650017D52C /* Model.swift */; };
@@ -44,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B2C7AA126D0187700A5F561 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		5B2D159326CC26D90017D52C /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
 		5B2D159926CC29650017D52C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5B2D159C26CC29770017D52C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 				5B2D159326CC26D90017D52C /* GamesView.swift */,
 				5B3A714B26C9B64600AFD6F1 /* Home.swift */,
 				5B4AB3AA26C36DE3001855EA /* ContentView.swift */,
+				5B2C7AA126D0187700A5F561 /* GameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,6 +366,7 @@
 				5B2D159426CC26D90017D52C /* GamesView.swift in Sources */,
 				5B2D159D26CC29770017D52C /* ViewModel.swift in Sources */,
 				5B4AB3D226C36DE5001855EA /* GameStreamApp.swift in Sources */,
+				5B2C7AA226D0187700A5F561 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +380,7 @@
 				5B2D159526CC26D90017D52C /* GamesView.swift in Sources */,
 				5B2D159E26CC29770017D52C /* ViewModel.swift in Sources */,
 				5B4AB3D326C36DE5001855EA /* GameStreamApp.swift in Sources */,
+				5B2C7AA326D0187700A5F561 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
