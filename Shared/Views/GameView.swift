@@ -2,49 +2,127 @@
 //  GameView.swift
 //  GameStream
 //
-//  Created by David Avendaño on 20/08/21.
+//  Created by David Avendaño on 21/08/21.
 //
 
 import SwiftUI
-import AVKit
 import Kingfisher
+import AVKit
 
 struct GameView: View {
     
-     var url:String
-     var title:String
-     var studio:String
-     var contentRating:String
-     var publicationYear: String
-     var description: String
-     var tags:[String]
-     var imagesUrl:[String]
+    var url:String
+    var title:String
+    var studio:String
+    var contentRating:String
+    var publicationYear: String
+    var description: String
+    var tags:[String]
+    var imagesUrl:[String]
+    
     
     
     var body: some View {
-        
-        
         ZStack {
-            
             Color("NavyBlue").ignoresSafeArea()
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             
-            VStack {
-                Video(url: url).frame(height: 300)
-                ScrollView {
-                    // Video info
-                    VideoInfo(title: title,
-                              studio: studio,
-                              contentRating: contentRating,
-                              publicationYear: publicationYear,
-                              description: description,
-                              tags: tags).padding(.bottom)
-                              
-                    
-                    Gallery(imagesUrl: imagesUrl)
+            
+            
+            ZStack {
                 
-                }.frame(maxWidth: .infinity)
+                Color("NavyBlue").ignoresSafeArea()
+                
+                VStack {
+                    Video(url: url).frame(height: 300)
+                    ScrollView {
+                        // Video info
+                        VideoInfo(title: title,
+                                  studio: studio,
+                                  contentRating: contentRating,
+                                  publicationYear: publicationYear,
+                                  description: description,
+                                  tags: tags).padding(.bottom)
+                        
+                        
+                        Gallery(imagesUrl: imagesUrl)
+                        Comments().padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                    }.frame(maxWidth: .infinity)
+                }
             }
         }
+    }
+}
+
+struct Comments: View{
+    
+    var body: some View{
+        
+        VStack (alignment: .leading){
+            Text("Comments")
+                .foregroundColor(.white)
+                .font(.largeTitle)
+                .padding(.leading)
+            
+            ZStack(alignment: .leading){
+                Color("Blue-Gray")
+                
+                VStack(alignment: .leading){
+                HStack(spacing: 20){
+                    Image("profile")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 35, height: 35)
+                        .padding(.leading)
+                    
+                   
+                        VStack(alignment: .leading){
+                            Text("Geoff Atto")
+                                .foregroundColor(.white).fontWeight(.bold)
+                            Text("7 days ago")
+                                .foregroundColor(.white).font(.caption)
+                        }
+                       
+                  
+                }.padding()
+                    Text("He visto que como media tiene una gran calificación, y estoy completamente de acuerdo. Es el mejor juego que he jugado sin ninguna duda, combina una buena trama con una buenísima experiencia de juego libre gracias a su inmenso mapa y actividades.").multilineTextAlignment(.leading)
+                        .foregroundColor(.white)
+                        .font(.body)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                }
+                
+            }.clipShape(RoundedRectangle(cornerRadius: 8)).padding(.bottom)
+            
+            ZStack(alignment: .leading){
+                Color("Blue-Gray")
+                
+                VStack(alignment: .leading){
+                HStack(spacing: 20){
+                    Image("profile")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 35, height: 35)
+                        .padding(.leading)
+                    
+                   
+                        VStack(alignment: .leading){
+                            Text("Alvy Baack")
+                                .foregroundColor(.white).fontWeight(.bold)
+                            Text("12 days ago")
+                                .foregroundColor(.white).font(.caption)
+                        }
+                       
+                  
+                }.padding()
+                    Text("Es el mejor juego que he jugado sin ninguna duda, combina una buena trama con una buenísima experiencia de juego libre gracias a su inmenso mapa y actividades.").multilineTextAlignment(.leading)
+                        .foregroundColor(.white)
+                        .font(.body)
+                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                }
+                
+            }.clipShape(RoundedRectangle(cornerRadius: 8))
+            
+        }.frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -53,14 +131,9 @@ struct Video: View{
     var url: String
     
     var body: some View{
-        
-        
-        
         VideoPlayer(player: AVPlayer(
                         url: URL(string: url)!))
             .ignoresSafeArea()
-        
-        
     }
 }
 
@@ -72,12 +145,12 @@ struct VideoInfo: View{
     var publicationYear: String
     var description: String
     var tags:[String]
-//    var imagesUrl:[String]
- 
+    //    var imagesUrl:[String]
+    
     var body: some View{
         
         VStack(alignment: .leading) {
-           
+            
             Text(title)
                 .foregroundColor(.white)
                 .font(.largeTitle)
@@ -100,7 +173,7 @@ struct VideoInfo: View{
                     .foregroundColor(.white)
                     .font(.subheadline)
                     .padding(.top, 5.0)
-                   
+                
             }
             
             Text(description)
@@ -120,9 +193,9 @@ struct VideoInfo: View{
                         .padding(.top, 4.0)
                         .padding(.leading)
                 }
-        
+                
             }
-         
+            
         }.frame( maxWidth: .infinity, alignment: .leading)
     }
 }
@@ -131,7 +204,7 @@ struct Gallery:View{
     
     var imagesUrl: [String]
     let gridShape = [
-    GridItem(.flexible())
+        GridItem(.flexible())
     ]
     
     var body: some View{
@@ -182,3 +255,4 @@ struct GameView_Previews: PreviewProvider {
             imagesUrl: ["https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg","https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg","https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg"])
     }
 }
+

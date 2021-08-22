@@ -82,7 +82,8 @@ struct GamesView: View {
                         publicationYear: publicationYear,
                         description: description,
                         tags: tags,
-                        imagesUrl: imagesUrl),
+                        imagesUrl: imagesUrl
+                    ),
                     isActive: $gameViewIsActive,
                     label:
                         {
