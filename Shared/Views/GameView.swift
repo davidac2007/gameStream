@@ -70,15 +70,15 @@ struct Comments: View{
                 
                 VStack(alignment: .leading){
                 HStack(spacing: 20){
-                    Image("profile")
+                    Image("profile2")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 35, height: 35)
+                        .frame(width: 40, height: 40)
                         .padding(.leading)
                     
                    
                         VStack(alignment: .leading){
-                            Text("Geoff Atto")
+                            Text("George Sterling")
                                 .foregroundColor(.white).fontWeight(.bold)
                             Text("7 days ago")
                                 .foregroundColor(.white).font(.caption)
@@ -86,7 +86,7 @@ struct Comments: View{
                        
                   
                 }.padding()
-                    Text("He visto que como media tiene una gran calificación, y estoy completamente de acuerdo. Es el mejor juego que he jugado sin ninguna duda, combina una buena trama con una buenísima experiencia de juego libre gracias a su inmenso mapa y actividades.").multilineTextAlignment(.leading)
+                    Text("I have seen that on average it has a great rating, and I completely agree. It is the best game I have played without any doubt, it combines a good plot with a great free play experience thanks to its immense map and activities.").multilineTextAlignment(.leading)
                         .foregroundColor(.white)
                         .font(.body)
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
@@ -99,15 +99,15 @@ struct Comments: View{
                 
                 VStack(alignment: .leading){
                 HStack(spacing: 20){
-                    Image("profile")
+                    Image("profile3")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 35, height: 35)
+                        .frame(width: 40, height: 40)
                         .padding(.leading)
                     
                    
                         VStack(alignment: .leading){
-                            Text("Alvy Baack")
+                            Text("Taylor Kane")
                                 .foregroundColor(.white).fontWeight(.bold)
                             Text("12 days ago")
                                 .foregroundColor(.white).font(.caption)
@@ -115,7 +115,7 @@ struct Comments: View{
                        
                   
                 }.padding()
-                    Text("Es el mejor juego que he jugado sin ninguna duda, combina una buena trama con una buenísima experiencia de juego libre gracias a su inmenso mapa y actividades.").multilineTextAlignment(.leading)
+                    Text("Absolutely breath taking game. The graphics are amazing - photo realistic. I am not usually a flight sim fan, but this game is just so completely engrossing that I find myself losing hour after hour in it - and I have only had the game for al little over a day. .").multilineTextAlignment(.leading)
                         .foregroundColor(.white)
                         .font(.body)
                         .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
