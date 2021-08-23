@@ -24,17 +24,18 @@ struct GameView: View {
     
     var body: some View {
         ZStack {
-            Color("NavyBlue").ignoresSafeArea()
+            Color("NavyBlue")
+                .ignoresSafeArea()
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            
-            
-            
+                 
             ZStack {
                 
-                Color("NavyBlue").ignoresSafeArea()
+                Color("NavyBlue")
+                    .ignoresSafeArea()
                 
                 VStack {
-                    Video(url: url).frame(height: 300)
+                    Video(url: url)
+                        .frame(height: 300)
                     ScrollView {
                         // Video info
                         VideoInfo(title: title,
@@ -43,10 +44,12 @@ struct GameView: View {
                                   publicationYear: publicationYear,
                                   description: description,
                                   tags: tags).padding(.bottom)
-                        
-                        
                         Gallery(imagesUrl: imagesUrl)
-                        Comments().padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                        Comments().padding(EdgeInsets(
+                                            top: 0,
+                                            leading: 10,
+                                            bottom: 0,
+                                            trailing: 10))
                         SimilarGames()
                     }.frame(maxWidth: .infinity)
                 }
@@ -86,13 +89,19 @@ struct Comments: View{
                        
                   
                 }.padding()
-                    Text("I have seen that on average it has a great rating, and I completely agree. It is the best game I have played without any doubt, it combines a good plot with a great free play experience thanks to its immense map and activities.").multilineTextAlignment(.leading)
+                    Text("I have seen that on average it has a great rating, and I completely agree. It is the best game I have played without any doubt, it combines a good plot with a great free play experience thanks to its immense map and activities.")
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.white)
                         .font(.body)
-                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                        .padding(EdgeInsets(
+                                    top: 0,
+                                    leading: 20,
+                                    bottom: 10,
+                                    trailing: 20))
                 }
                 
-            }.clipShape(RoundedRectangle(cornerRadius: 8)).padding(.bottom)
+            }.clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding(.bottom)
             
             ZStack(alignment: .leading){
                 Color("Blue-Gray")
@@ -108,17 +117,24 @@ struct Comments: View{
                    
                         VStack(alignment: .leading){
                             Text("Taylor Kane")
-                                .foregroundColor(.white).fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
                             Text("12 days ago")
-                                .foregroundColor(.white).font(.caption)
+                                .foregroundColor(.white)
+                                .font(.caption)
                         }
                        
                   
                 }.padding()
-                    Text("Absolutely breath taking game. The graphics are amazing - photo realistic. I am not usually a flight sim fan, but this game is just so completely engrossing that I find myself losing hour after hour in it - and I have only had the game for al little over a day. .").multilineTextAlignment(.leading)
+                    Text("Absolutely breath taking game. The graphics are amazing - photo realistic. I am not usually a flight sim fan, but this game is just so completely engrossing that I find myself losing hour after hour in it - and I have only had the game for al little over a day. .")
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.white)
                         .font(.body)
-                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                        .padding(EdgeInsets(
+                                        top: 0,
+                                        leading: 20,
+                                        bottom: 10,
+                                        trailing: 20))
                 }
                 
             }.clipShape(RoundedRectangle(cornerRadius: 8))
@@ -129,8 +145,15 @@ struct Comments: View{
 
 struct SimilarGames: View{
     
-    let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
+    let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4",
+                              "https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4",
+                              "https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4",
+                              "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4",
+                              "https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4",
+                              "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4",
+                              "https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
     @State var url = "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4"
+    
     var body: some View{
         
         VStack(alignment: .leading){
@@ -146,7 +169,10 @@ struct SimilarGames: View{
 //                            isPlayerActive = true
                         
                     }, label: {
-                                Image("Cuphead").resizable().scaledToFit().frame(width: 240, height: 135)
+                                Image("Cuphead")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 240, height: 135)
                     })
                     
                     Button(action: {url = urlVideos[5]
@@ -154,7 +180,10 @@ struct SimilarGames: View{
 //                            isPlayerActive = true
                         
                     }, label: {
-                                Image("Hades").resizable().scaledToFit().frame(width: 240, height: 135)
+                                Image("Hades")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 240, height: 135)
                     })
                     
                     Button(action: {url = urlVideos[6]
@@ -162,7 +191,10 @@ struct SimilarGames: View{
 //                            isPlayerActive = true
                         
                     }, label: {
-                                Image("Grand Theft Auto V").resizable().scaledToFit().frame(width: 240, height: 135)
+                                Image("Grand Theft Auto V")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 240, height: 135)
                     })
                  
                 }
@@ -178,8 +210,10 @@ struct Video: View{
     var url: String
     
     var body: some View{
-        VideoPlayer(player: AVPlayer(
-                        url: URL(string: url)!))
+        VideoPlayer(
+            player: AVPlayer(
+                url: URL(string: url)!
+            ))
             .ignoresSafeArea()
     }
 }
@@ -299,7 +333,8 @@ struct GameView_Previews: PreviewProvider {
             publicationYear: "1991",
             description: "Juego de Sega Genesis publicado en 1991 con más de 40 millones de copias vendidas actualmente",
             tags: ["plataformas", "mascotas"],
-            imagesUrl: ["https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg","https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg","https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg"])
+            imagesUrl: ["https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg"
+                        ,"https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg","https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg"])
     }
 }
 

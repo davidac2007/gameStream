@@ -54,7 +54,7 @@ struct Home: View {
 
 struct HomeScreen: View{
     
-    @State var textSearch = ""
+   
     var body: some View{
         
         
@@ -70,27 +70,7 @@ struct HomeScreen: View{
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250)
                         .padding(.vertical, 11.0)
-                    
-                    
-                    HStack{
-                        Button(action: {
-                            search()
-                        }, label: {
-                            Image(systemName: "magnifyingglass").foregroundColor(textSearch.isEmpty ? Color(.yellow) : Color("Dark-Cian")   )
-                        })
-                        
-                        ZStack(alignment: .leading){
-                            if textSearch.isEmpty{
-                                Text("Search")
-                                    .foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
-                            }
-                            
-                            TextField("", text: $textSearch).foregroundColor(.white)
-                        }
-                        
-                    }.padding([.top, .leading, .bottom], 11.0)
-                    .background(Color("Blue-Gray")).clipShape(Capsule())
-                    
+                                   
                 }.padding(.horizontal, 18)
                 SubModuleHome()
             }
@@ -107,13 +87,45 @@ struct HomeScreen: View{
 }
 
 struct SubModuleHome:View{
+    @State var isGameInfoEmpty = false
     @State var isPlayerActive = false
     @State var url = "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4"
+    @State var textSearch = ""
+    
     let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
     var body: some View{
         
         
         VStack {
+            
+            HStack{
+                Button(action: {
+//                    search()
+                    watchGane(name: textSearch)
+                    
+                    
+                }, label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(textSearch.isEmpty ?
+                                        Color(.yellow) : Color("Dark-Cian"))
+                }).alert(isPresented: $isGameInfoEmpty){
+                    
+                    Alert(title: Text("Error"), message: Text("Couldn't find any game"), dismissButton: .default(Text("OK")))
+                }
+                
+                ZStack(alignment: .leading){
+                    if textSearch.isEmpty{
+                        Text("Search")
+                            .foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                    }
+                    
+                    TextField("", text: $textSearch).foregroundColor(.white)
+                }
+                
+            }.padding([.top, .leading, .bottom], 11.0)
+            .background(Color("Blue-Gray")).clipShape(Capsule())
+            
+            
             Text("Most popular")
                 .font(.title2)
                 .foregroundColor(.white)
@@ -248,12 +260,18 @@ struct SubModuleHome:View{
             
         }.padding(.horizontal, 20)
         
+        
         NavigationLink(
             destination: VideoPlayer(player: AVPlayer(url: URL(string: url)!)).frame(width: 400, height: 300),
             isActive: $isPlayerActive,
             label: {
                 EmptyView()
             })
+        
+    }
+    func watchGane(name: String){
+        print("Looking for game")
+        isGameInfoEmpty = true
     }
 }
 
