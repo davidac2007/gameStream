@@ -23,7 +23,8 @@ class SearchGame: ObservableObject{
             .addingPercentEncoding(withAllowedCharacters:
                                     .urlQueryAllowed)
         
-                let url = URL(string: "https://gamestream-api.herokuapp.com/api/games/search?contains= \(gameNameSpaces ?? "cuphead")")!
+        let url = URL(string: "https://gamestream-api.herokuapp.com/api/games/search?contains=\(gameNameSpaces ?? "cuphead")")!
+               
         
                 var request = URLRequest(url: url)
         

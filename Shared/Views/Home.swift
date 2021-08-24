@@ -21,7 +21,7 @@ struct Home: View {
                     Text("Profile")
                 }.tag(0)
             
-           GamesView()
+            GamesView()
                 .tabItem {
                     
                     Image(systemName: "gamecontroller")
@@ -54,7 +54,7 @@ struct Home: View {
 
 struct HomeScreen: View{
     
-   
+    
     var body: some View{
         
         
@@ -70,7 +70,7 @@ struct HomeScreen: View{
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250)
                         .padding(.vertical, 11.0)
-                                   
+                    
                 }.padding(.horizontal, 18)
                 SubModuleHome()
             }
@@ -87,12 +87,20 @@ struct HomeScreen: View{
 }
 
 struct SubModuleHome:View{
+    @ObservedObject var foundGame = SearchGame()
+    @State var isGameViewActive = false
     @State var isGameInfoEmpty = false
     @State var isPlayerActive = false
-    @State var url = "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4"
+    @State var url = ""
+    @State var title:String = ""
     @State var textSearch = ""
+    @State var studio:String = ""
+    @State var contentRating:String = ""
+    @State var publicationYear:String = ""
+    @State var description:String = ""
+    @State var tags:[String] = [""]
+    @State var imgsUrl:[String] = [""]
     
-    let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
     var body: some View{
         
         
@@ -100,14 +108,14 @@ struct SubModuleHome:View{
             
             HStack{
                 Button(action: {
-//                    search()
-                    watchGane(name: textSearch)
+                    
+                    watchGame(name: textSearch)
                     
                     
                 }, label: {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(textSearch.isEmpty ?
-                                        Color(.yellow) : Color("Dark-Cian"))
+                                            Color(.yellow) : Color("Dark-Cian"))
                 }).alert(isPresented: $isGameInfoEmpty){
                     
                     Alert(title: Text("Error"), message: Text("Couldn't find any game"), dismissButton: .default(Text("OK")))
@@ -135,9 +143,7 @@ struct SubModuleHome:View{
             ZStack{
                 
                 Button(action: {
-                    url = urlVideos[0]
-                    print("url: \(url)")
-                    isPlayerActive = true
+                    watchGame(name: "The Witcher 3")
                 }, label: {
                     
                     VStack(spacing: 0){
@@ -203,24 +209,25 @@ struct SubModuleHome:View{
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(spacing: 15){
                     
-                    Button(action: {url = urlVideos[1]
-                            print("url: \(url)")
-                            isPlayerActive = true}, label: {
-                                Image("Abzu").resizable().scaledToFit().frame(width: 240, height: 135)
+                    Button(action: {
+                        watchGame(name: "Abzu")
+                    }, label: {
+                        Image("Abzu").resizable().scaledToFit().frame(width: 240, height: 135)
                     })
                     
-                    Button(action: {url = urlVideos[2]
-                            print("url: \(url)")
-                            isPlayerActive = true}, label: {
-                                Image("Crash Bandicoot").resizable().scaledToFit().frame(width: 240, height: 135)
+                    Button(action: {
+                        watchGame(name: "Crash Bandicoot")
+                        
+                    }, label: {
+                        Image("Crash Bandicoot").resizable().scaledToFit().frame(width: 240, height: 135)
                     })
                     
-                    Button(action: {url = urlVideos[3]
-                            print("url: \(url)")
-                            isPlayerActive = true}, label: {
-                                Image("DEATH STRANDING").resizable().scaledToFit().frame(width: 240, height: 135)
+                    Button(action: {
+                        watchGame(name: "DEATH STRANDING")
+                    }, label: {
+                        Image("DEATH STRANDING").resizable().scaledToFit().frame(width: 240, height: 135)
                     })
-                 
+                    
                 }
                 
             }.padding(.bottom)
@@ -234,24 +241,25 @@ struct SubModuleHome:View{
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(spacing: 15){
                     
-                    Button(action: {url = urlVideos[4]
-                            print("url: \(url)")
-                            isPlayerActive = true}, label: {
-                                Image("Cuphead").resizable().scaledToFit().frame(width: 240, height: 135)
+                    Button(action: {
+                        watchGame(name: "Cuphead")
+                    }, label: {
+                        Image("Cuphead").resizable().scaledToFit().frame(width: 240, height: 135)
                     })
                     
-                    Button(action: {url = urlVideos[5]
-                            print("url: \(url)")
-                            isPlayerActive = true}, label: {
-                                Image("Hades").resizable().scaledToFit().frame(width: 240, height: 135)
+                    Button(action: {
+                        watchGame(name: "Hades")
+                        
+                    }, label: {
+                        Image("Hades").resizable().scaledToFit().frame(width: 240, height: 135)
                     })
                     
-                    Button(action: {url = urlVideos[6]
-                            print("url: \(url)")
-                            isPlayerActive = true}, label: {
-                                Image("Grand Theft Auto V").resizable().scaledToFit().frame(width: 240, height: 135)
+                    Button(action: {
+                        watchGame(name: "Grand Theft Auto V")
+                    }, label: {
+                        Image("Grand Theft Auto V").resizable().scaledToFit().frame(width: 240, height: 135)
                     })
-                 
+                    
                 }
                 
             }.padding(.bottom)
@@ -262,16 +270,44 @@ struct SubModuleHome:View{
         
         
         NavigationLink(
-            destination: VideoPlayer(player: AVPlayer(url: URL(string: url)!)).frame(width: 400, height: 300),
-            isActive: $isPlayerActive,
+            destination:
+                GameView(url: url,
+                         title: title,
+                         studio: studio,
+                         contentRating: contentRating,
+                         publicationYear: publicationYear,
+                         description: description,
+                         tags: tags,
+                         imagesUrl: imgsUrl)
+            ,
+            isActive: $isGameViewActive,
             label: {
                 EmptyView()
             })
         
     }
-    func watchGane(name: String){
-        print("Looking for game")
-        isGameInfoEmpty = true
+    func watchGame(name: String){
+        
+        foundGame.searchGame(gameName: name)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+            print("E number: \(foundGame.gameInfo.count)")
+            
+            if foundGame.gameInfo.count == 0 {
+                isGameInfoEmpty = true
+            } else{
+                
+                url = foundGame.gameInfo[0].videosUrls.mobile
+                title = foundGame.gameInfo[0].title
+                studio = foundGame.gameInfo[0].studio
+                contentRating = foundGame.gameInfo[0].contentRaiting
+                publicationYear = foundGame.gameInfo[0].publicationYear
+                description = foundGame.gameInfo[0].description
+                tags = foundGame.gameInfo[0].tags
+                imgsUrl = foundGame.gameInfo[0].galleryImages
+                
+                isGameViewActive = true
+            }
+        }
     }
 }
 
