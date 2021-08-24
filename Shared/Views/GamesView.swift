@@ -68,10 +68,10 @@ struct GamesView: View {
                                     .clipShape(RoundedRectangle(cornerRadius: 4))
                                     .padding(.bottom, 12)
                             })
+                        }
                     }
-                }
-                
-            }.padding(.horizontal, 6)
+                    
+                }.padding(.horizontal, 6)
                 
                 NavigationLink(
                     destination: GameView(
@@ -89,20 +89,20 @@ struct GamesView: View {
                         {
                             EmptyView()
                         })
-            
-        }
+                
+            }
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
             .onAppear(perform: {
                 print("First json element: \(allGames.gamesInfo[0])")
                 print("First videogame json title \(allGames.gamesInfo[0].title)")
             })
+        }
     }
-}
-
-struct GamesView_Previews: PreviewProvider {
-    static var previews: some View {
-        GamesView()
+    
+    struct GamesView_Previews: PreviewProvider {
+        static var previews: some View {
+            GamesView()
+        }
     }
-  }
 }
