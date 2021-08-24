@@ -23,40 +23,38 @@ class SearchGame: ObservableObject{
             .addingPercentEncoding(withAllowedCharacters:
                                     .urlQueryAllowed)
         
-                let url = URL(string: "https://gamestream-api.herokuapp.com/api/games/search?contains=")!
-        //    init() {
+                let url = URL(string: "https://gamestream-api.herokuapp.com/api/games/search?contains= \(gameNameSpaces ?? "cuphead")")!
+        
+                var request = URLRequest(url: url)
+        
+        //        Specify request type
+                request.httpMethod = "GET"
         //
-       
-        //
-        //        var request = URLRequest(url: url)
-        //
-        ////        Specify request type
-        //        request.httpMethod = "GET"
-        //
-        ////      Create session
-        //        URLSession.shared.dataTask(with: request) { data, response, error in
-        //            do{
-        //                if let jsonData = data{
-        //
-        //                    print("Size of json \(jsonData)")
-        //
-        ////                    Decode data
-        //                    let decodeData = try
-        //                        JSONDecoder().decode([Game].self, from: jsonData)
-        //
-        ////                    Call async func
-        //                    DispatchQueue.main.async {
-        //                        self.gamesInfo.append(contentsOf: decodeData)
-        //                    }
-        //
-        //                }
-        //
-        //            }catch{
-        //
-        //                print("Error: \(error)")
-        //
-        //            }
-        //        }.resume()
+        //      Create session
+        
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    do{
+                        if let jsonData = data{
+        
+                            print("Size of json \(jsonData)")
+        
+        //                    Decode data
+                            let decodeData = try
+                                JSONDecoder().decode(Results.self, from: jsonData)
+        
+        //                    Call async func
+                            DispatchQueue.main.async {
+                                self.gameInfo.append(contentsOf: decodeData.results)
+                            }
+        
+                        }
+        
+                    }catch{
+        
+                        print("Error: \(error)")
+        
+                    }
+                }.resume()
     }
     
 
