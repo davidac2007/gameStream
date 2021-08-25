@@ -17,8 +17,7 @@ struct Home: View {
             Text("Profile Screen").font(.system(size: 30, weight: .bold, design: .rounded))
                 .tabItem {
                     
-                    Image(systemName: "person")
-                    Text("Profile")
+                    ProfileView()
                 }.tag(0)
             
             GamesView()
