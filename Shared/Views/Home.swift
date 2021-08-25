@@ -35,7 +35,7 @@ struct Home: View {
                     Text("Home")
                 }.tag(2)
             
-            Text("Favorites Screen").font(.system(size: 30, weight: .bold, design: .rounded))
+           FavoritesView()
                 .tabItem {
                     
                     Image(systemName: "heart")
