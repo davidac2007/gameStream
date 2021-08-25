@@ -66,8 +66,72 @@ struct ProfileView: View {
 }
 
 struct SettingsModule: View{
+    
+    @State var isToggleOn = true
+    @State var isEditProfile = false
+    
+    
     var body: some View{
-        Text("hEYY")
+        
+        VStack (spacing: 3.0){
+           
+            
+            GenericButton(title: "Account")
+            
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                HStack {
+                    Text("Notifications").foregroundColor(.white)
+                    Spacer()
+                    Toggle("", isOn: $isToggleOn)
+                }.padding()
+                
+            }).background(Color("Blue-Gray"))
+            .clipShape(RoundedRectangle(cornerRadius: 1))
+            
+            Button(action: {
+                isEditProfile =  true
+            }, label: {
+                HStack {
+                    Text("Edit Profile").foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.white)
+                }.padding()
+                
+            }).background(Color("Blue-Gray"))
+            .clipShape(RoundedRectangle(cornerRadius: 1))
+            
+            GenericButton(title: "Rate this app")
+            
+            NavigationLink(
+                destination: Text(""),
+                isActive: $isEditProfile,
+                label: {
+                    EmptyView()
+                })
+            
+        }
+        
+        
+    }
+    
+}
+
+struct GenericButton: View{
+    
+    let title: String
+    var body: some View{
+        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            HStack {
+                Text(title).foregroundColor(.white)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white)
+            }.padding()
+            
+        }).background(Color("Blue-Gray"))
+        .clipShape(RoundedRectangle(cornerRadius: 1))
+        
     }
     
 }
