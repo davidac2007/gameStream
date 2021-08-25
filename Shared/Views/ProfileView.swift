@@ -104,7 +104,7 @@ struct SettingsModule: View{
             GenericButton(title: "Rate this app")
             
             NavigationLink(
-                destination: Text(""),
+                destination: EditProfile(),
                 isActive: $isEditProfile,
                 label: {
                     EmptyView()
