@@ -14,10 +14,11 @@ struct Home: View {
     var body: some View {
         
         TabView(selection: $selectedTab){
-            Text("Profile Screen").font(.system(size: 30, weight: .bold, design: .rounded))
+            ProfileView()
                 .tabItem {
                     
-                    ProfileView()
+                    Image(systemName: "person")
+                    Text("Profile")
                 }.tag(0)
             
             GamesView()

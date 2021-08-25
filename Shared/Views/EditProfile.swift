@@ -16,6 +16,11 @@ struct EditProfile: View {
                 
                 VStack {
                    
+                    Text("Edit Profile")
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .padding(.bottom)
+                    
                     
                     Button(action: {}, label: {
                         ZStack {
