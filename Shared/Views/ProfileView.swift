@@ -37,12 +37,16 @@ struct ProfileView: View {
                         )
                         .clipShape(Circle())
                         
+                    Text(username)
+                        .bold()
+                        .foregroundColor(.white)
                     
                 }.padding(EdgeInsets(top: 16,
                                      leading: 0,
                                      bottom: 32,
                                      trailing: 0))
                 
+               
                 Text("Settings")
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
@@ -102,6 +106,8 @@ struct SettingsModule: View{
             .clipShape(RoundedRectangle(cornerRadius: 1))
             
             GenericButton(title: "Rate this app")
+            
+            Spacer()
             
             NavigationLink(
                 destination: EditProfile(),

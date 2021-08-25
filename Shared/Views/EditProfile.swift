@@ -38,8 +38,9 @@ struct EditProfile: View {
                 }.padding(.bottom, 18.0)
                 
                 
-                EditModule()
                 
+                EditModule()
+                Spacer()
             }
             
         }
@@ -49,7 +50,7 @@ struct EditProfile: View {
 
 struct EditModule: View{
     
-    @State var mail = ""
+    @State var email = ""
     @State var password = ""
     @State var username = ""
     
@@ -61,7 +62,7 @@ struct EditModule: View{
             
             ZStack(alignment: .leading){
                 
-                if mail.isEmpty{
+                if email.isEmpty{
                     
                     Text("example@email.com").font(.caption)
                         .foregroundColor(.gray)
@@ -69,7 +70,7 @@ struct EditModule: View{
                     
                 }
                 
-                TextField("", text: $mail)
+                TextField("", text: $email)
                     .foregroundColor(.white)
                         
             }
@@ -77,6 +78,7 @@ struct EditModule: View{
             Divider()
                 .frame(height: 1)
                 .background(Color("Dark-Cian"))
+                .padding(.bottom, 32.0)
             
             Text("Password")
                 .foregroundColor(.white)
@@ -99,6 +101,7 @@ struct EditModule: View{
             Divider()
                 .frame(height: 1)
                 .background(Color("Dark-Cian"))
+                .padding(.bottom, 32.0)
             
             Text("Name").foregroundColor(.white)
             ZStack(alignment: .leading){
@@ -139,11 +142,19 @@ struct EditModule: View{
                                     radius: 3))
             }).padding(.bottom)
         }.padding(.horizontal, 42.0)
+        
+        
     }
     
     func updateData(){
-        print("Saving and updating user data")
+        
+        let updateDataObject = SaveData()
+        let result = updateDataObject.saveData(email: email, password: password, username: username)
+        
+        print("Saved the data  successfully? \(result)")
     }
+    
+    
 }
 
 struct EditProfile_Previews: PreviewProvider {
