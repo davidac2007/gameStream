@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        
         NavigationView {
+            
+            
             ZStack {
                 Color(red: 19/255, green: 30/255, blue: 53/255, opacity: 1.0)
                     .ignoresSafeArea()
@@ -23,7 +26,7 @@ struct ContentView: View {
                     SignInSignUpView()
                 }
             }.navigationBarHidden(true)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
