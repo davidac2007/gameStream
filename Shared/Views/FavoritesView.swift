@@ -42,7 +42,7 @@ struct FavoritesView: View {
                        
                         
                     }
-                    
+                    Spacer()
                 }.padding(.bottom, 8)
             }.padding(.horizontal, 6.0)
         }.navigationBarHidden(true)

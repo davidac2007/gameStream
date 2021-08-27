@@ -64,6 +64,9 @@ struct SignInView: View{
     func validateData() {
         let validateDataObject = SaveData()
         isDataInvalid = validateDataObject.validateSignInData(email: email, password: password)
+        if(!isDataInvalid){
+            isHomeActive = true
+        }
     }
     
     var body: some View{
@@ -107,6 +110,7 @@ struct SignInView: View{
                     .padding(.bottom)
                 SignInUpButton(buttonTitle: "SIGN IN") {
                     validateData()
+                    
                 }.alert(isPresented: $isDataInvalid){
                     Alert(title: Text("Inconrrect Email or Password"),
                           message: Text("Your email or password is wrong"), dismissButton: .default(Text("OK")))
