@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State var username = "Lorem"
+    @State var profileImage:UIImage = UIImage(named: "profile")!
     
     var body: some View {
         ZStack{
@@ -26,17 +27,17 @@ struct ProfileView: View {
                            idealWidth: 100,
                            maxWidth: .infinity,
                            alignment: .center)
-                  
+                
                 VStack{
                     
-                    Image("profile")
+                    Image(uiImage: profileImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 118,
                                height: 118
                         )
                         .clipShape(Circle())
-                        
+                    
                     Text(username)
                         .bold()
                         .foregroundColor(.white)
@@ -46,7 +47,7 @@ struct ProfileView: View {
                                      bottom: 32,
                                      trailing: 0))
                 
-               
+                
                 Text("Settings")
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
@@ -64,10 +65,44 @@ struct ProfileView: View {
         }.onAppear(
             perform: {
                 print("Looking for user data")
+                
+                if returnUserImage(named: "profilePicture") != nil {
+                    
+                    profileImage = returnUserImage(named: "profilePicture")!
+                    
+                } else{
+                    
+                    print("Couldn't find any saved profile image on the device")
+                }
+                
+                if UserDefaults.standard.object(forKey: "userData") != nil {
+                    
+                    username = UserDefaults.standard.stringArray(forKey: "userData")![2]
+                    print("I did find this user: \(username)")
+                }else{
+                    
+                    print("Couldn't find user")
+                    
+                }
+                
             }
         )
     }
+    
+    func returnUserImage(named:String) -> UIImage? {
+        
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false){
+            
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+            
+        }
+        
+        return nil
+        
+    }
 }
+
+
 
 struct SettingsModule: View{
     
@@ -77,7 +112,7 @@ struct SettingsModule: View{
     var body: some View{
         
         VStack (spacing: 3.0){
-           
+            
             
             GenericButton(title: "Account", onPressed: {})
             
@@ -119,15 +154,15 @@ struct GenericButton: View{
     var body: some View{
         Button(action: onPressed,
                label: {
-            HStack {
-                Text(title).foregroundColor(.white)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.white)
-            }.padding()
-            
-        }).background(Color("Blue-Gray"))
-        .clipShape(RoundedRectangle(cornerRadius: 1))
+                HStack {
+                    Text(title).foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.white)
+                }.padding()
+                
+               }).background(Color("Blue-Gray"))
+            .clipShape(RoundedRectangle(cornerRadius: 1))
         
     }
     

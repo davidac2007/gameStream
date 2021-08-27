@@ -44,6 +44,7 @@ class SaveData{
             
             savedPassword = UserDefaults.standard.stringArray(forKey: "userData")![1]
             
+            
             print("I got this email: \(savedEmail) and this password: \(savedPassword)")
             
             if(email == savedEmail && password == savedPassword){
