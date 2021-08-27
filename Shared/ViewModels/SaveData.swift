@@ -61,5 +61,16 @@ class SaveData{
         
     }
     
+    func validateSignInData(email: String, password: String) -> Bool {
+        if(email.isEmpty && password.isEmpty){
+            return true
+        } else if(password.isEmpty || email.isEmpty){
+            return true
+        }
+        else{
+        return false
+        }
+    }
+    
     
 }

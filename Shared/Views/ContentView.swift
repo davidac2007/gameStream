@@ -59,6 +59,13 @@ struct SignInView: View{
     @State var email = ""
     @State var password = ""
     @State var isHomeActive = false
+    @State var isDataInvalid = false
+    
+    func validateData() {
+        let validateDataObject = SaveData()
+        isDataInvalid = validateDataObject.validateSignInData(email: email, password: password)
+    }
+    
     var body: some View{
         ScrollView {
             VStack(alignment: .leading){
@@ -75,7 +82,7 @@ struct SignInView: View{
                 }
                 Divider()
                     .frame(height: 1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .background(Color("Dark-Cian"))
+                    .background(isDataInvalid ? Color(.red) : Color("Dark-Cian"))
                     .padding(.bottom)
                 Text("Password")
                     .foregroundColor(Color(.white))
@@ -90,7 +97,7 @@ struct SignInView: View{
                 }
                 Divider()
                     .frame(height: 1, alignment: .center)
-                    .background(Color("Dark-Cian"))
+                    .background(isDataInvalid ?  Color(.red) : Color("Dark-Cian"))
                     .padding(.bottom)
                 
                 Text("Forgot password?")
@@ -98,16 +105,13 @@ struct SignInView: View{
                     .frame(width: 300, alignment: .trailing)
                     .foregroundColor(Color("Dark-Cian"))
                     .padding(.bottom)
-                Button(action: signIn, label: {
-                    Text("SIGN IN")
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18))
-                        .overlay(RoundedRectangle(cornerRadius: 6.0)
-                                    .stroke(Color("Dark-Cian"),lineWidth: 1.0)
-                                    .shadow(color: .white,radius: 6))
-                })
+                SignInUpButton(buttonTitle: "SIGN IN") {
+                    validateData()
+                }.alert(isPresented: $isDataInvalid){
+                    Alert(title: Text("Inconrrect Email or Password"),
+                          message: Text("Your email or password is wrong"), dismissButton: .default(Text("OK")))
+                }
+                
             }
             SocialAuthButtons(captionTitle: "Sign In With")
         }.padding(.horizontal, 50.0)
@@ -118,11 +122,10 @@ struct SignInView: View{
                 EmptyView()
             })
         
+        
+        
     }
-    func signIn(){
-        print("Signing in")
-        isHomeActive = true
-    }
+    
 }
 
 
@@ -184,8 +187,9 @@ struct EmailPasswordFields: View{
 
 struct SignInUpButton: View{
     let buttonTitle: String
+    let onPressed: () -> ()
     var body: some View{
-        Button(action: {}, label: {
+        Button(action: onPressed, label: {
             Text(buttonTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
@@ -221,7 +225,9 @@ struct SignUpView: View{
             })
             VStack(alignment: .leading){
                 TextFields()
-                SignInUpButton(buttonTitle: "SIGN UP")
+                SignInUpButton(buttonTitle: "SIGN UP") {
+                    print("Signing up")
+                }
                 SocialAuthButtons(captionTitle: "Sign up with")
             }
         }.padding(.horizontal, 30.0)
@@ -330,7 +336,6 @@ func takeProfilePic() {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Image("Screen2")
         ContentView()
     }
 }
