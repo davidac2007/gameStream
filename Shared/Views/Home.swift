@@ -101,6 +101,8 @@ struct SubModuleHome:View{
     @State var tags:[String] = [""]
     @State var imgsUrl:[String] = [""]
     
+    var device = UIDevice.current.model
+    
     var body: some View{
         
         
@@ -123,7 +125,7 @@ struct SubModuleHome:View{
                 
                 ZStack(alignment: .leading){
                     if textSearch.isEmpty{
-                        Text("Search")
+                        Text(device)
                             .foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
                     }
                     
@@ -207,28 +209,62 @@ struct SubModuleHome:View{
                 .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,maxWidth: .infinity,  alignment: .leading)
             
             ScrollView(.horizontal, showsIndicators: false){
-                HStack(spacing: 15){
+                
+                if device == "iPad" {
                     
-                    Button(action: {
-                        watchGame(name: "Abzu")
-                    }, label: {
-                        Image("Abzu").resizable().scaledToFit().frame(width: 240, height: 135)
-                    })
                     
-                    Button(action: {
-                        watchGame(name: "Crash Bandicoot")
+                    HStack(spacing: 15){
                         
-                    }, label: {
-                        Image("Crash Bandicoot").resizable().scaledToFit().frame(width: 240, height: 135)
-                    })
+                        Button(action: {
+                            watchGame(name: "Abzu")
+                        }, label: {
+                            Image("Abzu").resizable().scaledToFit().frame(width: 320, height: 180)
+                        })
+                        
+                        Button(action: {
+                            watchGame(name: "Crash Bandicoot")
+                            
+                        }, label: {
+                            Image("Crash Bandicoot").resizable().scaledToFit().frame(width: 320, height: 180)
+                        })
+                        
+                        Button(action: {
+                            watchGame(name: "DEATH STRANDING")
+                        }, label: {
+                            Image("DEATH STRANDING").resizable().scaledToFit().frame(width: 320, height: 180)
+                        })
+                        
+                    }
                     
-                    Button(action: {
-                        watchGame(name: "DEATH STRANDING")
-                    }, label: {
-                        Image("DEATH STRANDING").resizable().scaledToFit().frame(width: 240, height: 135)
-                    })
+                } else{
+                    
+                    
+                    HStack(spacing: 15){
+                        
+                        Button(action: {
+                            watchGame(name: "Abzu")
+                        }, label: {
+                            Image("Abzu").resizable().scaledToFit().frame(width: 240, height: 135)
+                        })
+                        
+                        Button(action: {
+                            watchGame(name: "Crash Bandicoot")
+                            
+                        }, label: {
+                            Image("Crash Bandicoot").resizable().scaledToFit().frame(width: 240, height: 135)
+                        })
+                        
+                        Button(action: {
+                            watchGame(name: "DEATH STRANDING")
+                        }, label: {
+                            Image("DEATH STRANDING").resizable().scaledToFit().frame(width: 240, height: 135)
+                        })
+                        
+                    }
                     
                 }
+                    
+           
                 
             }.padding(.bottom)
             
