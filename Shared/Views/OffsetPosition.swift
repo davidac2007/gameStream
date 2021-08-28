@@ -11,13 +11,22 @@ struct OffsetPosition: View {
     var body: some View {
         
         
-        
+//        Reads the geometry of the contained View
+        GeometryReader(content: { geometry in
+            
         VStack{
-            Offsets()
-            Positions()
             
             
-        }
+            Image("platzi")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: geometry.size.width/2  , height: geometry.size.height/3)
+//            Offsets()
+//            Positions()
+            
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+        })
     }
 }
 
