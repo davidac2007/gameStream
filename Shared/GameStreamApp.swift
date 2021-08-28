@@ -11,10 +11,7 @@ import SwiftUI
 @main
 struct GameStreamApp: App {
     
-    init() {
-//        Starting point of the app
-    }
-    
+    @Environment(\.scenePhase)  var scenePhase
     
     var body: some Scene {
         WindowGroup {
@@ -23,6 +20,25 @@ struct GameStreamApp: App {
 //                ContentView()
             }
             
-        }
+        }.onChange(of: scenePhase) { phase in
+                   
+                   print(phase)
+                   
+            switch phase {
+            case .active:
+                print("App is active")
+                
+            case .inactive:
+                print("App is inactive")
+                
+            case .background:
+                print("App is in background")
+               
+            default:
+                print("Other state")
+            }
+                   }
+        
+        
     }
 }
