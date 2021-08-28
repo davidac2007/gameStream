@@ -92,6 +92,7 @@ struct SignInView: View{
                     .padding(.bottom)
                 Text("Password")
                     .foregroundColor(Color(.white))
+                   
                 ZStack(alignment: .leading){
                     if password.isEmpty{
                         Text("Your password")
@@ -108,9 +109,10 @@ struct SignInView: View{
                 
                 Text("Forgot password?")
                     .font(.footnote)
-                    .frame(width: 300, alignment: .trailing)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                     .foregroundColor(Color("Dark-Cian"))
                     .padding(.bottom)
+                    
                 SignInUpButton(buttonTitle: "SIGN IN") {
                     validateData()
                     
