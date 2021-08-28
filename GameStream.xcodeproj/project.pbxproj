@@ -180,10 +180,10 @@
 		5B4AB3A826C36DE3001855EA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5B4AB3A926C36DE3001855EA /* GameStreamApp.swift */,
 				5B2D159826CC29410017D52C /* ViewModels */,
 				5B2D159726CC29390017D52C /* Models */,
 				5B2D159626CC28B80017D52C /* Views */,
-				5B4AB3A926C36DE3001855EA /* GameStreamApp.swift */,
 				5B4AB3AB26C36DE5001855EA /* Assets.xcassets */,
 			);
 			path = Shared;

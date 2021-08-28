@@ -7,11 +7,22 @@
 
 import SwiftUI
 
+// The main method
 @main
 struct GameStreamApp: App {
+    
+    init() {
+//        Starting point of the app
+    }
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HStack {
+                ContentView()
+//                ContentView()
+            }
+            
         }
     }
 }
