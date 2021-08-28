@@ -22,7 +22,8 @@ struct ContentView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 42)
+                        .offset(x: 0.0, y: 10.0)
                     SignInSignUpView()
                 }
             }.navigationBarHidden(true)
