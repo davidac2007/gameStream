@@ -86,7 +86,9 @@ struct ProfileView: View {
                 }
                 
             }
-        )
+        ).onDisappear(perform: {
+            print("Disappear view")
+        })
     }
     
     func returnUserImage(named:String) -> UIImage? {
