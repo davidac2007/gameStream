@@ -29,7 +29,7 @@ struct FavoritesView: View {
                         
                         VStack(spacing: 0) {
                             VideoPlayer(player: AVPlayer(url: URL(string: game.videosUrls.mobile)!))
-                                .frame(height: 300)
+                                .frame(height: 250)
                             Text("\(game.title)")
                                 .foregroundColor(.white)
                                 .padding()
@@ -37,16 +37,18 @@ struct FavoritesView: View {
                                        alignment: .leading)
                                 .background(Color("Blue-Gray"))
                                 .clipShape(RoundedRectangle(cornerRadius: 3.0))
-                        }
+                        }.padding(.bottom, 10.0)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
                         
                        
                         
                     }
                     Spacer()
-                }.padding(.bottom, 8)
-            }.padding(.horizontal, 6.0)
-        }.navigationBarHidden(true)
+                }.padding(.bottom, 15.0)
+            }.padding(.horizontal, 20.0)
+        }.navigationBarTitle("").navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+       
     }
 }
 
